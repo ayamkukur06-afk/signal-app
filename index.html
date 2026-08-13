@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SIGNAL — Kontrol Flash & Strobo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="screenFlash"></div>
+
+<!-- Login -->
+<div id="onboarding" class="overlay">
+  <div class="onboard-card">
+    <div class="eyebrow">Masuk</div>
+    <h1>SIGNAL</h1>
+    <p>Masuk untuk mendaftarkan perangkat ini dan mulai mengontrol.</p>
+    <input id="usernameInput" type="text" placeholder="Username" autocomplete="off" />
+    <input id="passwordInput" type="password" placeholder="Password" autocomplete="off" />
+    <button class="primary-btn" id="startBtn">Masuk</button>
+    <div class="status-line error-text" id="onboardStatus"></div>
+  </div>
+</div>
+
+<!-- App utama -->
+<div id="app" class="app hidden">
+  <header>
+    <div class="header-top">
+      <div>
+        <div class="eyebrow">Signal</div>
+        <h1>Perangkat</h1>
+      </div>
+      <div class="header-btns">
+        <button class="icon-btn" id="chatBtn">Chat Global</button>
+        <button class="icon-btn hidden" id="adminBtn">Panel Admin</button>
+      </div>
+    </div>
+    <div class="self-status" id="selfStatus"></div>
+  </header>
+
+  <div id="deviceList" class="device-list"></div>
+
+  <p class="footnote">Tap salah satu perangkat untuk menyalakan flash atau strobo dari jarak jauh. Status baterai & online diperbarui otomatis.</p>
+</div>
+
+<!-- Modal kontrol per-perangkat -->
+<div id="controlModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-close" id="closeModal">×</div>
+    <div class="eyebrow" id="modalDeviceLabel"></div>
+    <h2 id="modalDeviceName"></h2>
+    <div class="modal-meta" id="modalDeviceMeta"></div>
+
+    <div class="lamp-wrap small">
+      <div class="ring r3"></div>
+      <div class="ring r2"></div>
+      <div class="ring"></div>
+      <div class="lamp" id="modalLamp">
+        <span class="lamp-label" id="modalLampLabel">OFF</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="modalFlashBtn">Flash</button>
+      <button class="btn strobo-btn" id="modalStroboBtn">Strobo</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal panel admin (khusus owner) -->
+<div id="adminModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-close" id="closeAdminModal">×</div>
+    <div class="eyebrow">Panel Admin</div>
+    <h2>Kelola Pengguna</h2>
+
+    <div class="admin-list" id="adminUserList"></div>
+
+    <div class="admin-form">
+      <input id="newUsername" type="text" placeholder="Username baru" autocomplete="off" />
+      <input id="newPassword" type="password" placeholder="Password baru" autocomplete="off" />
+      <select id="newRole">
+        <option value="member">Member</option>
+        <option value="vip">VIP</option>
+        <option value="admin">Admin</option>
+        <option value="owner">Owner</option>
+      </select>
+      <button class="primary-btn" id="createUserBtn">Tambah Pengguna</button>
+      <div class="status-line error-text" id="adminStatus"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal chat global -->
+<div id="chatModal" class="modal hidden">
+  <div class="modal-card chat-card">
+    <div class="modal-close" id="closeChatModal">×</div>
+    <div class="eyebrow">Semua Perangkat</div>
+    <h2>Chat Global</h2>
+
+    <div class="chat-list" id="chatList"></div>
+
+    <div class="chat-input-row">
+      <input id="chatInput" type="text" placeholder="Tulis pesan..." autocomplete="off" />
+      <button class="icon-btn" id="sendChatBtn">Kirim</button>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
