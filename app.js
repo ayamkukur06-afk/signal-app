@@ -76,7 +76,7 @@
   const USERNAME_LOGIN_RE = /^[a-z0-9_]{3,20}$/;
   function usernameToCredentials(username) {
     return {
-      email: `${username}@untai.local`,
+      email: `${username}@users.untai-app.com`,
       password: `untai-${username}-key`,
     };
   }
